@@ -1,0 +1,64 @@
+{%extends "layout.html "%}
+
+{% block content %}
+
+<div class="card">
+
+    <div class="card-header">
+        <h3>Obtener resultado</h3>
+    </div>
+
+    <div class="card-body">
+
+        <div class="d-flex flex-column">
+            <div>
+                <div class="mb-3">
+                    <form method="POST" action="/resultado">
+                        <div class="d-flex gap-2">
+                            <input type="text" class="form-control form-control-lg" id="txt_input" name="txt_input" placeholder="Ingrese la proposición a validar" value="{{ input }}" required>
+                            <button type="button" class="btn btn-lg btn-light shadow-sm" title="Bicondicional" onclick="clean()">Limpiar</button>
+                            <button type="submit" class="btn btn-lg btn btn-dark">Resultado</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-start align-items-center gap-2">
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Bicondicional" onclick="addCaracter('p')">p</button>
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Bicondicional" onclick="addCaracter('q')">q</button>
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Bicondicional" onclick="addCaracter('r')">r</button>
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Bicondicional" onclick="addCaracter('(')">(</button>
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Bicondicional" onclick="addCaracter(')')">)</button>
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Negación" onclick="addCaracter('¬')">¬</button>
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Conjunción" onclick="addCaracter('∧')">∧</button>
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Disyunción inclusiva" onclick="addCaracter('∨')">∨</button>
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Disyunción exclusiva" onclick="addCaracter('⊕')">⊕</button>
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Condición" onclick="addCaracter('→')">→</button>
+                <button type="button" class="btn btn-lg btn-light shadow-sm" title="Bicondicional" onclick="addCaracter('↔')">↔</button>
+            </div>
+
+        </div>
+
+        {% if input %}
+        <div class="d-flex p-2 bg-light mt-4">
+            <pre class="m-0">{{ input }}</pre>
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+<script>
+    function addCaracter(val) {
+        document.querySelector('#txt_input').value += val;
+        document.querySelector('#txt_input').focus();
+    }
+
+    function clean() {
+        document.querySelector('#txt_input').value = "";
+        document.querySelector('#txt_input').focus();
+    }
+</script>
+
+{% endblock content %}
