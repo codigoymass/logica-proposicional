@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
 from controllers.conectores import conjuncion, disyuncion_inclusiva, disyuncion_exclusiva
+from controllers.estructura import crear
 
 app = FastAPI()
 
@@ -16,11 +17,16 @@ async def validate(request: Request, txt_input: str = Form(...)):
     
 @app.get("/conjuncion", include_in_schema=False, name="conjuncion")
 def conjuncion(request: Request):
-    return templates.TemplateResponse(request, "conjuncion.html")
+    result = crear("p∧q")
+    return templates.TemplateResponse(request, "conjuncion.html", {"result": result})
 
-@app.get("/disyuncion", include_in_schema=False, name="disyuncion")
+@app.get("/disyuncion-inclusiva", include_in_schema=False, name="disyuncion-inclusiva")
 def disyuncion(request: Request):
-    return templates.TemplateResponse(request, "disyuncion.html")
+    return templates.TemplateResponse(request, "disyuncion_inclusiva.html")
+
+@app.get("/disyuncion-exclusiva", include_in_schema=False, name="disyuncion-exclusiva")
+def disyuncion(request: Request):
+    return templates.TemplateResponse(request, "disyuncion_exclusiva.html")
     
 @app.get("/condicion", include_in_schema=False, name="condicion")
 def condicion(request: Request):

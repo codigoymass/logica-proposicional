@@ -1,9 +1,9 @@
 def conjuncion(a, b):
-    result = (a == True) and (b == True)
+    result = a and b
     return result
 
 def disyuncion_inclusiva(a, b):
-    result = (not a == False) and (not b == False)
+    result = a or b
     return result
 
 def disyuncion_exclusiva(a, b):
@@ -11,7 +11,7 @@ def disyuncion_exclusiva(a, b):
     return result
 
 def condicion(a, b):
-    result = (a == True) and (b == False)
+    result = a and (not b)
     return result
 
 def bicondicion(a, b):
