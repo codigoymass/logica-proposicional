@@ -1,4 +1,4 @@
-from controllers.conectores import conjuncion, disyuncion_inclusiva, disyuncion_exclusiva, condicion, bicondicion
+from conectores import conjuncion, disyuncion_inclusiva, disyuncion_exclusiva, condicion, bicondicion
 from itertools import product
 
 

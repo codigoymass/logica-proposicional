@@ -1,7 +1,5 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
-from controllers.conectores import conjuncion, disyuncion_inclusiva, disyuncion_exclusiva
-# from controllers.estructura import crear
 from estructura import crear
 
 app = FastAPI()
