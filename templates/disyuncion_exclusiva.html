@@ -2,6 +2,20 @@
 
 {% block content %}
 
-    <h2>Disyunción Exclusiva</h2>
+<div class="card">
+    <div class="card-header">
+        <h3>Disyunción exclusiva (⊕)</h3>
+    </div>
+
+    <div class="card-body">
+        <p>La disyunción exclusiva es verdadera si al menos una de las dos proposiciones que la conforman son verdaderas pero no ambas a la vez.</p>
+
+        {% if tabla %}
+            {% set col_res = 'resultado' %}
+            {% set variables = (tabla[0].keys() | reject('equalto', col_res) | list) if tabla else [] %}
+            {% include '_tabla.html' %}
+        {% endif %}
+    </div>
+</div>
 
 {% endblock content %}

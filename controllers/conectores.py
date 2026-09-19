@@ -11,7 +11,7 @@ def disyuncion_exclusiva(a, b):
     return result
 
 def condicion(a, b):
-    result = a and (not b)
+    result = (not a) or b
     return result
 
 def bicondicion(a, b):

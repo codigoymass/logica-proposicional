@@ -2,6 +2,20 @@
 
 {% block content %}
 
-    <h2>Condición</h2>
+<div class="card">
+    <div class="card-header">
+        <h3>Condición (→)</h3>
+    </div>
+
+    <div class="card-body">
+        <p>La condición únicamente es falsa si el antecedente es verdadero y el consecuente es falso.</p>
+
+        {% if tabla %}
+            {% set col_res = 'resultado' %}
+            {% set variables = (tabla[0].keys() | reject('equalto', col_res) | list) if tabla else [] %}
+            {% include '_tabla.html' %}
+        {% endif %}
+    </div>
+</div>
 
 {% endblock content %}

@@ -1,0 +1,20 @@
+<div class="d-flex p-2 mt-4">
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            {% for v in variables %}<th>{{ v }}</th>{% endfor %}
+            <th class="res">{{ col_res }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for fila in tabla %}
+        <tr>
+            {% for v in variables %}
+            <td><span class="{{ fila[v] }}">{{ fila[v] }}</span></td>
+            {% endfor %}
+            <td class="res"><span class="{{ fila[col_res] }}">{{ fila[col_res] }}</span></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -45,6 +45,18 @@
         </div>
         {% endif %}
 
+        {% if error %}
+        <div class="d-flex p-2 bg-danger-subtle mt-4">
+            <pre class="m-0">{{ error }}</pre>
+        </div>
+        {% endif %}
+
+        {% if tabla %}
+            {% set col_res = 'resultado' %}
+            {% set variables = (tabla[0].keys() | reject('equalto', col_res) | list) if tabla else [] %}
+            {% include '_tabla.html' %}
+        {% endif %}
+
     </div>
 
 </div>
