@@ -1,0 +1,21 @@
+{%extends "layout.html" %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Negación (¬)</h3>
+    </div>
+
+    <div class="card-body">
+        <p>La negación solo es cambiar el valor de verdad de la proposición.</p>
+
+        {% if tabla %}
+            {% set col_res = 'resultado' %}
+            {% set variables = (tabla[0].keys() | reject('equalto', col_res) | list) if tabla else [] %}
+            {% include '_tabla.html' %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

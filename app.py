@@ -95,6 +95,23 @@ def bicondicion(request: Request):
         {"input": txt_input, "tabla": tabla, "error": error}
     )
 
+@app.get("/negacion", include_in_schema=False, name="negacion")
+def negacion(request: Request):
+    txt_input = "¬p"
+    tabla = None
+    error = None
+
+    try:
+        tabla = crear(txt_input)
+    except ValueError as e:
+        error = str(e)
+
+    return templates.TemplateResponse(
+        request,
+        "negacion.html",
+        {"input": txt_input, "tabla": tabla, "error": error}
+    )
+
 @app.post("/resultado", include_in_schema=False, name="resultado")
 async def validate(request: Request, txt_input: str = Form(...)):
     tabla = None
