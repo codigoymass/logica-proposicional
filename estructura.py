@@ -29,9 +29,11 @@ def a_postfijo(tokens):
             pila.pop()
     while pila:
         salida.append(pila.pop())
+        
+    print(salida)
     return salida
 
-
+# Evaluador de cada uno de los conectores de las proposiciones
 def evaluar_postfijo(postfijo, valores):
     pila = []
     for tok in postfijo:
@@ -55,7 +57,7 @@ def evaluar_postfijo(postfijo, valores):
                 pila.append(bicondicion(a, b))
     return pila[0]
 
-
+# Crea la estructura en un array para obtener los resultados por proposicion y guardarlos para mostrarlos en una tabla
 def crear(estructura):
     valido, mensaje = validar_estructura(estructura)
     if not valido:
@@ -68,6 +70,7 @@ def crear(estructura):
 
     postfijo = a_postfijo(tokens)
     combinaciones = list(product(BOOL, repeat=cant_prop))
+    #print(combinaciones)
 
     table = []
     for combinacion in combinaciones:
@@ -77,13 +80,14 @@ def crear(estructura):
         fila_vf['resultado'] = a_vf(resultado)
         table.append(fila_vf)
 
+    #print(table)
     return table
 
-
+# Retorna V para True y F para false
 def a_vf(valor):
     return 'V' if valor else 'F'
 
-
+# Validar la estructura del texto ingresado por el usuario
 def validar_estructura(estructura):
     tokens = list(estructura.replace(' ', ''))
 
@@ -119,3 +123,13 @@ def validar_estructura(estructura):
                 return False, f"Falta un valor después de '{tok}'"
 
     return True, None
+
+# Clasificación del resultado
+def clasificar(tabla):
+    resultados = [fila['resultado'] for fila in tabla]
+
+    if all(r == 'V' for r in resultados):
+        return "TAUTOLOGÍA: Todos los resultados son verdaderos (V)."
+    if all(r == 'F' for r in resultados):
+        return "CONTRADICCIÓN: Todos los resultados son falsos (F)."
+    return "INDETERMINACIÓN: Los resultados combinan valores verdaderos (V) y falsos (F)."

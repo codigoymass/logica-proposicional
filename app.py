@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
-from estructura import crear
+from estructura import crear, clasificar
 
 app = FastAPI()
 
@@ -102,11 +102,12 @@ async def validate(request: Request, txt_input: str = Form(...)):
 
     try:
         tabla = crear(txt_input)
+        clasificacion = clasificar(tabla)
     except ValueError as e:
         error = str(e)
 
     return templates.TemplateResponse(
         request,
         "home.html",
-        {"input": txt_input, "tabla": tabla, "error": error}
+        {"input": txt_input, "tabla": tabla, "clasificacion": clasificacion, "error": error}
     )
